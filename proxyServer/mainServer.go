@@ -12,8 +12,8 @@ var (
 )
 
 const (
-	HttpServerAddress      = "8080"
-	ProxyServerHttpAddress = "8081"
+	HttpServerAddress = "8080"
+	ProxyHttpAddress  = "8081"
 )
 
 func main() {
