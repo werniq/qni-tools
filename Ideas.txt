@@ -1,8 +1,11 @@
+dns security, network detection and response;
+              anti-phishing;
+              data discovery;
+              packet-level visibility;
 intrusion detection system (IDS), intrusion prevention system (IPS), network address translation (NAT),
 load balancer, content delivery network (CDN), honeypot, secure web gateway, malware sandbox,
 data loss prevention (DLP), encryption gateway, network firewall, application firewall, web application firewall (WAF),
-proxy server, secure socket layer (SSL) terminator, virtual LAN (VLAN), subnet, demilitarized zone (DMZ), network security policy,
+secure socket layer (SSL) terminator, virtual LAN (VLAN), subnet, demilitarized zone (DMZ), network security policy,
 two-factor authentication (2FA), single sign-on (SSO), Security Information and Event Management (SIEM),
 Security Operations Center (SOC), Security Incident Response Team (SIRT), Security Assessment and Penetration Testing (SAPT),
-endpoint protection, antivirus, anti-malware, security awareness training, vulnerability management, patch management,
-secure coding practices
+endpoint protection, antivirus, anti-malware, security awareness training, vulnerability management, patch management
