@@ -15,7 +15,7 @@ import (
 
 var trackerCmd = &cobra.Command{
 	Use:   "tracker",
-	Short: "Trace the IP",
+	Short: "Find a target by IP",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) > 0 {
 			for _, ip := range args {

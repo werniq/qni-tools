@@ -7,7 +7,7 @@ import (
 var (
 	rootCmd = &cobra.Command{
 		Use:   "cobra-cli",
-		Short: "IpTracker CLI application",
+		Short: "Find Your target by IP.",
 	}
 )
 
