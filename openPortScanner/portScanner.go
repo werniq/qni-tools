@@ -11,6 +11,8 @@ import (
 	"golang.org/x/sync/semaphore"
 )
 
+// PortScanner holds data about target machine data
+// and number of possible scanning goroutines
 type PortScanner struct {
 	// Ip - host machine ip address
 	Ip string
