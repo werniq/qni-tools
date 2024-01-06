@@ -9,23 +9,7 @@ import (
 	"io"
 	"log"
 	"net/http"
-
-	"github.com/spf13/cobra"
 )
-
-var trackerCmd = &cobra.Command{
-	Use:   "tracker",
-	Short: "Find a target by IP",
-	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) > 0 {
-			for _, ip := range args {
-				showData(ip)
-			}
-		} else {
-			fmt.Println("Please provide the IP address")
-		}
-	},
-}
 
 type Ip struct {
 	IP       string `json:"ip"`
@@ -35,10 +19,6 @@ type Ip struct {
 	Loc      string `json:"loc"`
 	timezone string `json:"timezone"`
 	postel   string `json:"postel"`
-}
-
-func init() {
-	rootCmd.AddCommand(trackerCmd)
 }
 
 func getData(url string) []byte {
@@ -69,4 +49,9 @@ func showData(ip string) {
 
 	fmt.Println("Data found")
 	fmt.Printf("IP: %s\nCITY :%s\nREGION :%s\nCOUNTRY:%s\nLOC :%s\nTIMEZONE: %s\nPOSTEL:%s\n", data.IP, data.City, data.Region, data.Country, data.Loc, data.timezone, data.postel)
+}
+
+func main() {
+	ip := "125.19.91.235"
+	showData(ip)
 }
