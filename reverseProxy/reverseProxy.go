@@ -15,6 +15,7 @@ var (
 	InfoLogger  = log.New(os.Stdout, "INFO: \t", log.Ldate|log.Ltime|log.Lshortfile)
 )
 
+// launching reverse proxy and main server
 func main() {
 	originServerUri, err := url.Parse("https://localhost:8081")
 	if err != nil {
