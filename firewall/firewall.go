@@ -22,6 +22,37 @@ const (
 	DbName     = "DATABAS"
 )
 
+func init() {
+	err := insertMacs()
+	if err != nil {
+		log.Fatalf("Error inserting mac addresses in database: %v\n", err)
+	}
+}
+
+func insertMacs() error {
+	macAddresses := []string{}
+	connStr := fmt.Sprintf(`host=%s, port=%d, db_name=%s, user=%s, password=%s`,
+		DbHost, DbPort, DbName, DbUsername, DbUserPw,
+	)
+	db, err := sql.Open("postgres", connStr)
+	if err != nil {
+		return err
+	}
+
+	for _, v := range macAddresses {
+		res, err := db.Exec("INSERT INTO mac_addresses(mac) VALUES($1);", v)
+		if err != nil {
+			return err
+		}
+
+		if id, err := res.LastInsertId(); err != nil && id != 0 {
+			return err
+		}
+	}
+
+	return nil
+}
+
 func macInDb(mac string) (bool, error) {
 	connStr := fmt.Sprintf(`host=%s, port=%d, db_name=%s, user=%s, password=%s`,
 		DbHost, DbPort, DbName, DbUsername, DbUserPw,
@@ -68,8 +99,17 @@ func main() {
 	for packet := range packetSource.Packets() {
 		// Print the packet details
 		fmt.Println(packet)
+
 		var netPayload *NetworkLayerPayload
-		if err := json.Unmarshal(packet.NetworkLayer().LayerContents(), &netPayload); err != nil {
+		//ethLayer := packet.LinkLayer()
+		//if ethLayer == nil {
+		//	log.Println("No Ethernet layer found in the packet")
+		//	continue
+		//}
+
+		//ethLayer.LinkFlow().Dst()
+
+		if err = json.Unmarshal(packet.NetworkLayer().LayerContents(), &netPayload); err != nil {
 			ok, err := macInDb(netPayload.DstMac)
 			if err != nil {
 				log.Printf("Error querying to the database: %v\n", err.Error())
@@ -78,6 +118,7 @@ func main() {
 
 			if !ok {
 				log.Printf("Given Mac is not in the database")
+
 				continue
 			}
 		}
